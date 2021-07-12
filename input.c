@@ -80,13 +80,15 @@ static size_t inbuf_get_alloc_size (const struct inbuf *inbuf,
                 KC_FATAL("Invalid allocation size: %"PRIu64,
                          (uint64_t)min_size);
 
-        return MAX(min_size,
 #ifdef MREMAP_MAYMOVE
-                   4096
+		return MAX(min_size,
+			4096
+		);
 #else
-                   1024
+		return MAX(min_size,
+			1024
+		);
 #endif
-                );
 }
 
 
